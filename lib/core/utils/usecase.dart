@@ -18,3 +18,5 @@ abstract class UseCaseNoParams<Type> {
 abstract class UseCaseWithEitherFailure<Type, Params> {
   Future<Either<Failure, Type>> call(Params params);
 }
+
+class NoParams {}

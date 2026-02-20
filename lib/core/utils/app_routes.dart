@@ -4,6 +4,8 @@ import 'package:feedback_to_vfd/features/dashboard/presentation/screen/feedback_
 import 'package:feedback_to_vfd/features/main/presentation/screen/main_screen.dart';
 import 'package:feedback_to_vfd/features/onboarding/splash_screen.dart';
 import 'package:feedback_to_vfd/features/users/presentation/screens/login_screen.dart';
+import 'package:feedback_to_vfd/features/projects/presentation/screens/projects_screen.dart';
+import 'package:feedback_to_vfd/features/users/presentation/screens/profile_screen.dart';
 
 class AppRoutes {
   static String splashRoute = '/';
@@ -54,9 +56,7 @@ class AppRoutes {
               GoRoute(
                 path: AppRoutes.projectsRoute,
                 name: 'Projects',
-                builder: (context, state) => const Scaffold(
-                  body: Center(child: Text('Projects Page')),
-                ),
+                builder: (context, state) => const ProjectsScreen(),
               ),
             ],
           ),
@@ -74,9 +74,7 @@ class AppRoutes {
               GoRoute(
                 path: AppRoutes.profileRoute,
                 name: 'Profile',
-                builder: (context, state) => const Scaffold(
-                  body: Center(child: Text('Profile Page')),
-                ),
+                builder: (context, state) => const ProfileScreen(),
               ),
             ],
           ),

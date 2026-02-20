@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:feedback_to_vfd/core/error/error_handler.dart';
+import 'package:feedback_to_vfd/core/services/secure_storage_service.dart';
 import 'package:feedback_to_vfd/core/utils/failures.dart';
 import 'package:feedback_to_vfd/features/users/data/data_sources/users_api_service.dart';
 import 'package:feedback_to_vfd/features/users/data/model/user_model.dart';
@@ -14,6 +15,34 @@ class AuthRepositoryImpl implements AuthRepository {
 
   final UsersApiService remoteDataSource;
   final SupabaseClient supabase;
+
+  @override
+  Future<Either<Failure, UserEntity?>> initializeAuth() async {
+    try {
+      final session = supabase.auth.currentSession;
+      if (session == null) {
+        return const Right(null);
+      }
+
+      // Restore user from secure storage
+      final userDataMap = await SecureStorageService.instance.getUserData();
+
+      if (userDataMap == null) {
+        return const Right(null);
+      }
+
+      return Right(UserModel.fromJson(userDataMap));
+    } catch (e) {
+      return Left(ServerFailure(message: 'Failed to initialize auth: $e'));
+    }
+  }
+
+  @override
+  Future<void> logout() async {
+    await supabase.auth.signOut();
+    await SecureStorageService.instance.deleteUserData();
+  }
+
   @override
   Future<Either<Failure, UserEntity>> getUserData(String accessId) async {
     try {
@@ -55,6 +84,8 @@ class AuthRepositoryImpl implements AuthRepository {
         accessToken: sessionData['access_token'] as String?,
         refreshToken: sessionData['refresh_token'] as String?,
       );
+
+      await SecureStorageService.instance.saveUserData(userModel.toJson());
 
       log('User logged in successfully');
 

@@ -88,21 +88,16 @@ class SecureStorageService {
     await _storage.write(key: 'user_data', value: jsonData);
   }
 
-  // Future<({Map<String, dynamic>? mapResponse, LoginResponse? modelResponse})>
-  // getUserData() async {
-  //   final userDataString = await _storage.read(key: 'user_data');
-  //   kLogs('Got user data from secure storage');
-  //   // kLogs('User data string is $userDataString');
-  //   if (userDataString == null) return (mapResponse: null, modelResponse: null);
-  //   try {
-  //     final userData = jsonDecode(userDataString) as Map<String, dynamic>;
-  //     final parsedData = LoginResponse.fromJson(userData);
-  //     return (mapResponse: userData, modelResponse: parsedData);
-  //   } catch (e) {
-  //     kLogs('Error parsing user data: $e');
-  //     return (mapResponse: null, modelResponse: null);
-  //   }
-  // }
+  Future<Map<String, dynamic>?> getUserData() async {
+    final userDataString = await _storage.read(key: 'user_data');
+    if (userDataString == null) return null;
+    try {
+      return jsonDecode(userDataString) as Map<String, dynamic>;
+    } catch (e) {
+      kLogs('Error parsing user data: $e');
+      return null;
+    }
+  }
 
   Future<void> deleteUserData() async {
     kLogs('Deleting user data from secure storage');
