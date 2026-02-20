@@ -1,0 +1,55 @@
+{
+  "count": 123,
+  "next": "http://api.example.org/accounts/?page=4",
+  "previous": "http://api.example.org/accounts/?page=2",
+  "results": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "title": "string",
+      "user": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "job": {
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "analysis": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "status": "pending",
+        "progress": 0,
+        "progress_remarks": "string",
+        "result": "string",
+        "error_message": "string",
+        "completed_at": "2026-02-17T19:26:11.978Z",
+        "created": "2026-02-17T19:26:11.978Z",
+        "modified": "2026-02-17T19:26:11.978Z"
+      },
+      "results": [
+        {
+          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "analysis": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "title": "string",
+          "media_type": "movie",
+          "season": 0,
+          "episode": 0,
+          "timestamp": "string",
+          "confidence": "-5",
+          "rank": 0,
+          "scene_description": "string",
+          "extra_notes": "string",
+          "created": "2026-02-17T19:26:11.979Z",
+          "modified": "2026-02-17T19:26:11.979Z"
+        }
+      ],
+      "files": [
+        {
+          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "media_type": "image",
+          "size": 0,
+          "created": "2026-02-17T19:26:11.979Z",
+          "modified": "2026-02-17T19:26:11.979Z",
+          "size_mb": "string",
+          "media_type_ext": "string",
+          "url": "string"
+        }
+      ],
+      "created": "2026-02-17T19:26:11.979Z",
+      "modified": "2026-02-17T19:26:11.979Z"
+    }
+  ]
+}
